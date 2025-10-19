@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Univsersidad Tecnológica Internacional</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+    <img src="img/logo.jpg" alt="Logo de la Universidad Internacional" class="logo">
+    <div class="header-title">
+        <h1>Univsersidad Tecnólogica Internacional</h1>
+    </div>
+
+    
+</header>
+    
+    <!-- Barra tipo menú al iniciar la sesión -->
+    <nav id="modules-bar" class="modules-bar" role="navigation" aria-label="Módulos" hidden>
+        <ul class="modules-list">
+            <li class="modules-item"><button data-target="estudiantes" class="modules-link">Estudiantes</button></li>
+            <li class="modules-item"><button data-target="cursos" class="modules-link">Cursos</button></li>
+            <li class="modules-item"><button data-target="profesores" class="modules-link">Profesores</button></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+
+        <!-- Login Card -->
+        <section id="login-view" class="card login-card" aria-labelledby="login-title">
+            <h2 id="login-title" class="card-title">Inicio de Sesión</h2>
+
+            <form id="login-form" class="form-column" action="#" method="get" novalidate>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required placeholder="@edu.ui.ac.cr"
+                       title="Introduce un correo electrónico válido.">
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required minlength="6"
+                       title="La contraseña debe tener al menos 6 caracteres.">
+
+                <button type="submit" class="btn primary">Iniciar Sesión</button>
+                <label for="reset">¿Olvidó su contraseña?</label>
+            </form>
+        </section>
+
+        <!-- Contenedores de contenido (uno por pestaña). Ocultos hasta que se haga click en la pestaña -->
+        <section id="estudiantes" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Estudiantes</h3>
+                <table class="data-table" aria-describedby="caption-estudiantes">
+                    <thead>
+                        <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Edad</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>101</td><td>Ana Gómez</td><td>anago@edu.ui.ac.cr</td><td>22</td></tr>
+                        <tr><td>102</td><td>Luis Pérez</td><td>luispe@edu.ui.ac.cr</td><td>24</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="cursos" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Cursos</h3>
+                <table class="data-table" aria-describedby="caption-cursos">
+                    <thead>
+                        <tr><th>ID</th><th>Nombre del Curso</th><th>Créditos</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>301</td><td>Programación Web</td><td>4</td></tr>
+                        <tr><td>302</td><td>Bases de Datos I</td><td>3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="profesores" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Profesores</h3>
+                <table class="data-table" aria-describedby="caption-profesores">
+                    <thead>
+                        <tr><th>ID</th><th>Nombre</th><th>Especialidad</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>501</td><td>Dra. Elena Soto</td><td>Algoritmos</td></tr>
+                        <tr><td>502</td><td>Ing. Marco Ríos</td><td>Redes</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <small>© Universidad Tecnóliga Internacional</small>
+    </footer>
+
+    <script>
+        // Elementos
+        const loginForm = document.getElementById('login-form');
+        const loginView = document.getElementById('login-view');
+        const modulesBar = document.getElementById('modules-bar');
+        const moduleButtons = document.querySelectorAll('.modules-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Mostrar la barra de módulos tras el login; no mostrar ningún tab content automáticamente
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simular login exitoso
+            loginView.hidden = true;
+            // mostrar la barra de módulos
+            modulesBar.hidden = false;
+            // asegurarse de que todas las pestañas de contenido queden ocultas
+            tabContents.forEach(t => t.hidden = true);
+            // desplazar a top para que se vea la barra
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mostrar pestaña únicamente al hacer click en la barra
+        function showTab(id) {
+            // ocultar todos los tab-content
+            tabContents.forEach(t => t.hidden = true);
+            // quitar clase active en todos los botones
+            moduleButtons.forEach(b => b.classList.remove('active'));
+            // mostrar el contenido seleccionado
+            const el = document.getElementById(id);
+            if (el) el.hidden = false;
+            // marcar el botón activo
+            const btn = document.querySelector('.modules-link[data-target="' + id + '"]');
+            if (btn) btn.classList.add('active');
+            // scroll suave al contenido mostrado
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        moduleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                showTab(target);
+            });
+        });
+
+        // Por seguridad, mantener todo oculto al cargar
+        window.addEventListener('load', () => {
+            modulesBar.hidden = true;
+            tabContents.forEach(t => t.hidden = true);
+        });
+    </script>
+</body>
+</html>

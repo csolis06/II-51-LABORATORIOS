@@ -1,0 +1,159 @@
+/* styles.css — barra tipo menú + pestañas (manteniendo colores y forma) */
+
+/* Reset ligero */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+    --bg: #e7e0e0;
+    --card: #5c5da5; /* Color general de tarjetas */
+    --accent: #1b1c1d; /* color oscuro */
+    --menu-bg: #7554a0; /* tono para la barra tipo menú */
+    --menu-accent: #ffffff;
+    
+}
+
+/* Body y layout */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('img/lol.jpg'); /* ruta de tu imagen */
+    background-repeat: no-repeat;         /* evita que se repita */
+    background-size: cover;               /* cubre toda la pantalla */
+    background-position: center center;   /* centra la imagen */
+    min-height: 100vh;
+    margin: 0;
+}
+/* Header principal (centrado) */
+.site-header {
+    display: flex;            /* activa flexbox */
+    align-items: center;      /* centra verticalmente todos los elementos */
+    padding: 18px 24px;       /* espacio interno */
+    background: #383636;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.site-header .logo {
+    width: 60px;              /* ancho del logo */
+    height: auto;             /* mantiene proporción */
+    margin-right: 20px;       /* espacio entre logo y texto */
+    border-radius: 6px;
+}
+
+.site-header .header-title {
+    flex-grow: 1;             /* ocupa todo el espacio restante */
+    text-align: left;         /* texto alineado a la izquierda del espacio restante */
+}
+
+.site-header .header-title h1 {
+    margin: 0;
+    font-size: 28px;          /* tamaño del texto, ajustar según prefieras */
+}
+
+
+/* Barra tipo menú (debajo del header) */
+.modules-bar {
+    background: var(--menu-bg);
+    color: var(--menu-accent);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.modules-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    gap: 12px;
+    padding: 10px 16px;
+    align-items: center;
+}
+
+/* Elementos de la barra */
+.modules-item { }
+.modules-link {
+    background: transparent;
+    border: none;
+    color: var(--menu-accent);
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background .18s ease;
+}
+.modules-link:hover { background: rgba(255,255,255,0.08); }
+
+/* Clase active */
+.modules-link.active {
+    background: rgba(255,255,255,0.18);
+    box-shadow: inset 0 -3px 0 rgba(255,255,255,0.15);
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto 80px;
+    padding: 0 16px;
+}
+
+/* Tarjetas */
+.card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+}
+
+/* Login */
+.login-card { max-width: 420px; margin: 8px auto; }
+.card-title { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-bottom: 8px; text-align: center; }
+
+.form-column { display: flex; flex-direction: column; gap: 10px; }
+.form-column label { font-weight: bold; color: #fcfbfb; }
+.form-column input[type="email"],
+.form-column input[type="password"] {
+    padding: 10px;
+    border: 1px solid #434141; 
+    border-radius: 4px;
+}
+
+.btn { padding: 10px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 16px; }
+.btn.primary { background: var(--accent); color: #fff; }
+
+/* Titulo de opciones */
+.tab-content { margin-top: 12px; }
+.tab-title { margin: 0 0 8px 0; color: #fcfbfb; }
+
+/* Tables */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 6px; background: #fff; border-radius: 4px; overflow: hidden; }
+.data-table thead { background: #383636; color: #fff; }
+#cursos thead { background: #383636; color: #fff; }
+#profesores thead { background: #383636; color: #fff; }
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.data-table tbody tr:nth-child(even) { background: #f9f9f9; }
+
+/* Footer */
+.site-footer { text-align: center; padding: 12px; color: #666; margin-top: auto; }
+
+/* Responsive: menú apilable en pantallas pequeñas */
+@media (max-width: 720px) {
+    .modules-list { flex-wrap: wrap; justify-content: center; gap: 8px; padding: 8px; }
+    .modules-link { padding: 8px 12px; font-size: 14px; }
+    .container { padding: 0 12px; margin-top: 12px; }
+}
