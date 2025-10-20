@@ -24,7 +24,7 @@ body {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('img/lol.jpg'); /* ruta de tu imagen */
+    background-image: url('/I_Avance/lol.jpg'); /* ruta de tu imagen */
     background-repeat: no-repeat;         /* evita que se repita */
     background-size: cover;               /* cubre toda la pantalla */
     background-position: center center;   /* centra la imagen */
