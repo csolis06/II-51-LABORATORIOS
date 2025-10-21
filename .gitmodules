@@ -1,3 +1,5 @@
 [submodule "Lab01"]
     path = Lab01
     url = https://github.com/csolis06/Lab01.git
+[submodule "Lab001"]
+	url = https://github.com/tuUsuario/Lab001.git
