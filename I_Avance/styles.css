@@ -109,6 +109,13 @@ body {
 }
 .data-table tbody tr:nth-child(even) { background: #f9f9f9; }
 
+.modules-link:hover {
+    background-color: #ffffff;  /* Color de fondo al pasar el mouse */
+    color: #7554a0;            /* Color de texto al pasar el mouse */
+    transform: scale(1.05);    /* Opcional: un pequeño efecto de agrandamiento */
+    transition: all 0.3s ease; /* Para que el cambio sea suave */
+}
+
 /* Footer */
 .site-footer { text-align: center; padding: 12px; color: #666; margin-top: auto; }
 
