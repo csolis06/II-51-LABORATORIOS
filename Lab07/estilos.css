@@ -1,0 +1,11 @@
+.caja {
+  padding: 10px;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s;
+}
+
+.caja.color {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  font-weight: bold;
+}

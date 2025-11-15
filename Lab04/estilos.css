@@ -1,0 +1,105 @@
+ body {
+      font-family: Arial, sans-serif;
+      background-color: rgba(246, 246, 246, 0.623); /* Fondo oscuro general */
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0964a1;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #0964a1;
+      padding: 10px 15px;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #ccc;
+    }
+
+    .form-group label {
+      display: block;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 10px 50px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    .form-input {
+      width: 95%; 
+      padding: 10px 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      /* Aplica fondo blanco a los campos de texto */
+      background-color: white; 
+      color: #333; 
+    }
+    
+    .submit-button:hover {
+      background-color: #2563eb;
+      /* Un azul más oscuro al pasar el mouse */
+    }
+    .title{
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+    }
+
+    .menu {
+        background-color: #30622f;
+        overflow: hidden;
+        margin: 20px 0;
+        margin-top: 20;
+    }
+    
+    .menu ul {
+        list-style-type: none;
+        padding:0;
+        margin:0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu li {
+        margin: 0 15px;
+    }
+
+    .menu a {
+        text-transform: uppercase
+        color: black;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+    }
+
+    .menu a:hover {
+        background-color: #575757;
+    }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio Semana 11</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <h2>Formulario de prueba</h2>
+
+  <form id="miFormulario">
+    <label>Nombre:
+      <input type="text" id="nombre" />
+    </label><br><br>
+
+    <label>Apellido:
+      <input type="text" id="apellido" />
+    </label><br><br>
+
+    <button type="button" id="validarBtn">Validar</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <hr>
+
+  <div id="bloqueTexto" class="caja">
+    Este texto cambiará de color dinámicamente.
+  </div>
+
+  <button id="agregarClase">Agregar clase</button>
+  <button id="quitarClase">Quitar clase</button>
+
+  <hr>
+
+  <button id="mostrarOcultar">Mostrar/Ocultar Elemento</button>
+  <div id="elementoOculto" style="display:none;">Elemento oculto que puede mostrarse</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
