@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Universidad Tecnológica Internacional</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header" role="banner">
+        <img src="images/logo.jpg" alt="Logo de pagína" class="logo">
+        <div class="header-title">
+            <h1>Universidad Tecnólogica Internacional</h1>
+        </div>
+    </header>
+
+    <!-- Barra tipo menú al iniciar la sesión -->
+    <nav id="modules-bar" class="modules-bar" role="navigation" aria-label="Módulos">
+        <ul class="modules-list"> <!--Lista desordenada -->
+            <li class="modules-item"><button data-target="estudiantes" class="modules-link">Estudiantes</button></li>
+            <li class="modules-item"><button data-target="cursos" class="modules-link">Cursos</button></li>
+            <li class="modules-item"><button data-target="profesores" class="modules-link">Profesores</button></li>
+            <li class="modules-item"><button data-target="registro" class="modules-link">Registro</button></li>
+        </ul>
+    </nav>
+
+    <main class="container" role="main">
+        <!-- Login Card -->
+        <section id="login-view" class="card login-card" aria-labelledby="login-title">
+            <h2 id="login-title" class="card-title">Inicio de Sesión</h2>
+
+            <form id="login-form" class="form-column" action="#" method="get" novalidate>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required placeholder="@edu.ui.ac.cr" autocomplete="username">
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required minlength="4" autocomplete="current-password">
+
+                <button type="submit" class="btn primary">Iniciar Sesión</button>
+                <label for="reset">¿Olvidó su contraseña?</label>
+            </form>
+        </section>
+
+        <!-- Contenedores de contenido (uno por pestaña). Ocultos hasta que se haga click en la pestaña -->
+        <section id="estudiantes" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Estudiantes</h3>
+
+                <!-- Formulario de búsqueda / filtro (simulado) -->
+                <form id="buscar-estudiantes" class="form-inline" onsubmit="event.preventDefault(); filtrarEstudiantes();">
+                    <label for="filtro">Buscar (Nombre o ID):</label>
+                    <input type="search" id="filtro" name="filtro" placeholder="Ej: Ana o 12A">
+                    <button type="submit" class="btn">Buscar</button>
+                    <button type="button" class="btn" id="limpiar-filtro">Limpiar</button>
+                </form>
+
+                <table id="tabla-estudiantes" class="data-table" >
+                    <caption class="sr-only">Lista de estudiantes</caption>
+                    <thead>
+                        <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Edad</th><th>Carrera</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>12A</td><td>Ana Gómez</td><td>anago@edu.ui.ac.cr</td><td>22</td><td>Informática</td></tr>
+                        <tr><td>13A</td><td>Luis Pérez</td><td>luispe@edu.ui.ac.cr</td><td>24</td><td>Administración</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="cursos" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Cursos</h3>
+
+                <!-- Filtro simple por créditos (simulado) -->
+                <form id="filtrar-cursos" class="form-inline" onsubmit="event.preventDefault(); filtrarCursos();">
+                    <label for="creditos">Créditos:</label>
+                    <input type="number" id="creditos" name="creditos" min="1" max="10" placeholder="Ej: 4">
+                    <button type="submit" class="btn">Filtrar</button>
+                    <button type="button" class="btn" id="limpiar-cursos">Limpiar</button>
+                </form>
+
+                <table class="data-table" aria-describedby="caption-cursos">
+                    <caption id="caption-cursos" class="sr-only">Lista de cursos</caption>
+                    <thead>
+                        <tr><th>ID</th><th>Nombre del Curso</th><th>Créditos</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>20D</td><td>Informática</td><td>4</td></tr>
+                        <tr><td>21F</td><td>Administración</td><td>3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="profesores" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Profesores</h3>
+                <table class="data-table" aria-describedby="caption-profesores">
+                    <caption id="caption-profesores" class="sr-only">Lista de profesores</caption>
+                    <thead>
+                        <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Asignación</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>30E</td><td>Ing. Elena Soto</td><td>elena@edu.ui.ac.cr</td><td>Informática</td></tr>
+                        <tr><td>31N</td><td>LIC. Marco Ríos</td><td>marco@edu.ui.ac.cr</td><td>Administración</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Módulo Registro (INSERTAR) -->
+        <section id="registro" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Registro de Estudiantes</h3>
+
+                <!-- Formulario de registro estático pero funcional -->
+                <form id="form-registro" class="form-column" action="#" method="post" novalidate>
+                    <label for="reg-id">ID Estudiante:</label>
+                    <input type="text" id="reg-id" name="reg-id" required pattern="^[0-9]{2}[A-Z]$" placeholder="Ej: 14B" title="Dos dígitos y una letra mayúscula, ej. 14B">
+
+                    <label for="reg-nombre">Nombre Completo:</label>
+                    <input type="text" id="reg-nombre" name="reg-nombre" required minlength="5" placeholder="Nombre Apellido">
+
+                    <label for="reg-email">Correo Institucional:</label>
+                    <input type="email" id="reg-email" name="reg-email" required placeholder="usuario@edu.ui.ac.cr">
+
+                    <label for="reg-edad">Edad:</label>
+                    <input type="number" id="reg-edad" name="reg-edad" required min="17" max="120">
+
+                    <label for="reg-carrera">Carrera:</label>
+                    <select id="reg-carrera" name="reg-carrera" required>
+                        <option value="">Seleccione...</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Administración">Administración</option>
+                        <option value="Contabilidad">Contabilidad</option>
+                    </select>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Registrar</button>
+                        <button type="reset" class="btn">Limpiar</button>
+                    </div>
+                </form>
+
+                <div id="registro-mensaje" role="status" aria-live="polite" class="sr-only"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <small>© Universidad Tecnóliga Internacional</small>
+    </footer>
+
+    <script>
+        // Elementos principales
+        const loginForm = document.getElementById('login-form');
+        const loginView = document.getElementById('login-view');
+        const modulesBar = document.getElementById('modules-bar');
+        const moduleButtons = document.querySelectorAll('.modules-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Mostrar/ocultar al iniciar sesión (simulado)
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Validación nativa HTML5: reportValidity muestra errores si hay
+            if (!loginForm.reportValidity()) return;
+            loginView.hidden = true;
+            modulesBar.hidden = false;
+            tabContents.forEach(t => t.hidden = true);
+            // Por defecto mostrar Estudiantes al iniciar sesión
+            const defaultTab = document.getElementById('estudiantes');
+            if (defaultTab) defaultTab.hidden = false;
+            // marcar botón activo
+            const btn = document.querySelector('.modules-link[data-target="estudiantes"]');
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mostrar pestaña al hacer click en la barra
+        function showTab(id) {
+            tabContents.forEach(t => t.hidden = true);
+            moduleButtons.forEach(b => b.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) el.hidden = false;
+            const btn = document.querySelector('.modules-link[data-target="' + id + '"]');
+            if (btn) btn.classList.add('active');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        moduleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                showTab(target);
+            });
+        });
+
+        // Mantener oculto al cargar
+        window.addEventListener('load', () => {
+            modulesBar.hidden = true;
+            tabContents.forEach(t => t.hidden = true);
+        });
+
+        // ----- Registro: al enviar, validar y agregar a la tabla de estudiantes (simulado INSERT) -----
+        const formRegistro = document.getElementById('form-registro');
+        const tablaEstudiantes = document.querySelector('#tabla-estudiantes tbody');
+        const registroMensaje = document.getElementById('registro-mensaje');
+
+        formRegistro && formRegistro.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Validación nativa
+            if (!formRegistro.reportValidity()) return;
+
+            const id = document.getElementById('reg-id').value.trim();
+            const nombre = document.getElementById('reg-nombre').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const edad = document.getElementById('reg-edad').value.trim();
+            const carrera = document.getElementById('reg-carrera').value;
+
+            // Insertar fila en la tabla de estudiantes (simulado)
+            if (tablaEstudiantes) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${escapeHtml(id)}</td><td>${escapeHtml(nombre)}</td><td>${escapeHtml(email)}</td><td>${escapeHtml(edad)}</td><td>${escapeHtml(carrera)}</td>`;
+                tablaEstudiantes.appendChild(tr);
+            }
+
+            // Mensaje de confirmación (accesible)
+            registroMensaje.textContent = `Estudiante ${nombre} (${id}) registrado correctamente.`;
+            registroMensaje.classList.remove('sr-only');
+            // limpiar form
+            formRegistro.reset();
+            // Ir a vista estudiantes y resaltar botón
+            showTab('estudiantes');
+        });
+
+        // Función simple de escape para evitar HTML injection en este contexto estático
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // ------- Buscador/filtro simple para estudiantes -------
+        function filtrarEstudiantes() {
+            const query = document.getElementById('filtro').value.toLowerCase().trim();
+            const filas = document.querySelectorAll('#tabla-estudiantes tbody tr');
+            filas.forEach(row => {
+                const cells = Array.from(row.cells).map(c => c.textContent.toLowerCase());
+                const match = cells.some(text => text.includes(query));
+                row.style.display = match || query === '' ? '' : 'none';
+            });
+        }
+        document.getElementById('limpiar-filtro')?.addEventListener('click', () => {
+            document.getElementById('filtro').value = '';
+            filtrarEstudiantes();
+        });
+
+        // ------- Filtro simple para cursos (simulado) -------
+        function filtrarCursos() {
+            const creditos = document.getElementById('creditos').value.trim();
+            const filas = document.querySelectorAll('#cursos .data-table tbody tr');
+            filas.forEach(row => {
+                const c = row.cells[2].textContent.trim();
+                if (creditos === '') row.style.display = '';
+                else row.style.display = (c === creditos) ? '' : 'none';
+            });
+        }
+        document.getElementById('limpiar-cursos')?.addEventListener('click', () => {
+            document.getElementById('creditos').value = '';
+            filtrarCursos();
+        });
+
+    </script>
+</body>
+</html>

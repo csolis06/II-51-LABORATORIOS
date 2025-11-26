@@ -1,0 +1,161 @@
+/* Colores */
+:root{
+    --card: #5c5da5; /* Color general de tarjetas */
+    --accent: #000000; /* color oscuro inicio de sesion */
+    --menu-bg: #7554a0; /* tono para la barra tipo menú */
+    --menu-accent: #ffffff; /* Letras barra de menu */
+    --muted: #f5f4f6;
+}
+
+/*Fondo*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('images/lol.jpg');        
+    background-size: cover;              
+    background-position: center center;   
+    min-height: 100vh;
+    margin: 0;
+    color: #222;
+}
+
+/* Header principal */
+.site-header {
+    display: flex;           
+    align-items: center;      
+    padding: 18px 24px;      
+    background: #383636;
+    color: #fff;
+}
+
+/* logo*/
+.site-header .logo {
+    width: 60px;              /* ancho del logo */
+    height: auto;             /* mantiene proporción */
+    margin-right: 20px;       /* espacio entre logo y texto */
+    border-radius: 6px;
+}
+
+/* Barra tipo menú (debajo del header) */
+.modules-bar {
+    background: var(--menu-bg);
+    color: var(--menu-accent);
+    width: 100%;
+}
+
+/*Alineacion barra header*/ 
+.modules-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    gap: 12px;
+    padding: 10px 16px;
+    align-items: center;
+}
+
+/* Elementos de la barra header*/
+.modules-item { list-style: none; }
+.modules-link {
+    background: transparent;
+    border: none;
+    color: var(--menu-accent);
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 80px auto 80px;
+    padding: 0 16px;
+}
+
+.card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Login */
+.login-card { max-width: 420px; margin: 8px auto; }
+.card-title { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-bottom: 8px; text-align: center; }
+
+.form-column { display: flex; flex-direction: column; gap: 10px; }
+.form-column label { font-weight: bold; color: #fcfbfb; }
+.form-column input[type="email"],
+.form-column input[type="password"],
+.form-column input[type="text"],
+.form-column input[type="number"],
+.form-column input[type="search"],
+.form-column select {
+    padding: 10px;
+    border: 1px solid var(--muted); 
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Form inline (buscadores/filters) */
+.form-inline {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.form-inline label { color: #fff; font-weight: 600; }
+
+/* Botones */
+.btn { padding: 8px 12px; border-radius: 6px; border: none; cursor: pointer; font-size: 14px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+.btn.primary { background: var(--accent); color: #fff; border: none; }
+
+/* Titulo de opciones */
+.tab-content { margin-top: 12px; }
+.tab-title { margin: 0 0 8px 0; color: #f9f9f9; }
+
+/* Tables */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 6px; background: #fff; border-radius: 4px; overflow: hidden; }
+.data-table thead { background: #383636; color: #fff; }
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.data-table tbody tr:nth-child(even) { background: #f9f9f9; }
+
+/* Hover en módulos */
+.modules-link:hover {
+    background-color: #ffffff;  /* Color de fondo al pasar el mouse */
+    color: #7554a0;            /* Color de texto al pasar el mouse */
+    transform: scale(1.05);    /* Opcional: un pequeño efecto de agrandamiento */
+    transition: all 0.3s ease; /* Para que el cambio sea suave */
+}
+
+/* Footer */
+.site-footer { text-align: center; padding: 12px; color: #666; margin-top: auto; }
+
+/* Estilos específicos para el módulo registro */
+#registro .form-column label { color: #fff; }
+#registro input, #registro select { background: #fff; color: #222; }
+
+/* Mensajes accesibles (visibilidad por CSS) */
+.sr-only {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+/* Responsivo básico */
+@media (max-width: 600px) {
+    .modules-list { flex-wrap: wrap; justify-content: center; gap: 6px; }
+    .container { margin: 20px 12px; }
+    .login-card { margin: 16px; }
+    .form-inline { flex-direction: column; align-items: stretch; }
+}

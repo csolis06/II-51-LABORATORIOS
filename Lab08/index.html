@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SRI4kXILFvY473J6Cr9ZW007VP4J8+LH7QKnuqkuIAvNwLZeN8tE5YbujZqJLB"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab08</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Lista de Cursos</h1>
+      <ul id="lista" class="list-group">
+        <li class="list-group-item">Curso 1: Introducción a la Programación</li>
+      </ul>
+      <form id="curso-form">
+        <h2 id="form-title">Registrar curso</h2>
+
+        <input type="hidden" id="id" />
+
+        <input type="text" id="codigo" required />
+
+        <label>Nombre del curso</label>
+        <input type="text" id="nombre" required />
+
+        <label>Créditos</label>
+        <input type="number" id="creditos" required min="1" max="5" />
+
+        <button type="submit" id="btn-save">Agregar Usuario</button>
+        <button type="button" id="btn-cancel" style="display: none">
+          Cancelar
+        </button>
+
+        <div id="status"></div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+
+
+
