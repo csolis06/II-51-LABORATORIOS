@@ -12,8 +12,8 @@ const modulesBar = document.getElementById('modules-bar');
 const moduleButtons = document.querySelectorAll('.modules-link');
 const tabContents = document.querySelectorAll('.tab-content');
 const formRegistro = document.getElementById('form-registro');
-const tablaEstudiantes = document.querySelector('#tabla-estudiantes tbody');
 const registroMensaje = document.getElementById('registro-mensaje');
+const logoutButton = document.getElementById('logout-button'); 
 
 
 // Función para sanitizar HTML
@@ -34,25 +34,22 @@ function showTab(id) {
 }
 
 // =================================
-// 2. LÓGICA DE CARGA DE DATOS (SELECT)
+// 2. LÓGICA DE CARGA DE DATOS (SELECT) Y ELIMINACIÓN (DELETE)
 // =================================
 
 async function cargarEstudiantes() {
     const tablaBody = document.querySelector('#tabla-estudiantes tbody');
     if (!tablaBody) return;
     
-    // Limpia la tabla antes de cargar datos nuevos
     tablaBody.innerHTML = ''; 
 
     // SELECT de datos de Supabase
     const { data, error } = await supabase
-        .from('estudiante') // Nombre de tu tabla: 'estudiante'
+        .from('estudiante') 
         .select('id, nombre, email, edad, carrera'); 
 
     if (error) {
         console.error('Error al cargar estudiantes:', error);
-        registroMensaje.textContent = `Error al cargar datos: ${error.message}`;
-        registroMensaje.style.color = 'red';
         return;
     }
 
@@ -60,10 +57,59 @@ async function cargarEstudiantes() {
         // Renderiza cada fila en la tabla HTML
         data.forEach(estudiante => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${escapeHtml(estudiante.id)}</td><td>${escapeHtml(estudiante.nombre)}</td><td>${escapeHtml(estudiante.email)}</td><td>${escapeHtml(estudiante.edad.toString())}</td><td>${escapeHtml(estudiante.carrera)}</td>`;
+            
+            // Columna para el botón "Eliminar"
+            tr.innerHTML = `
+                <td>${escapeHtml(estudiante.id)}</td>
+                <td>${escapeHtml(estudiante.nombre)}</td>
+                <td>${escapeHtml(estudiante.email)}</td>
+                <td>${escapeHtml(estudiante.edad.toString())}</td>
+                <td>${escapeHtml(estudiante.carrera)}</td>
+                <td>
+                    <button class="btn danger btn-delete" data-id="${escapeHtml(estudiante.id)}">Eliminar</button>
+                </td>
+            `;
             tablaBody.appendChild(tr);
         });
+        
+        // Asignamos el evento de clic a CADA botón de eliminar recién creado
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const estudianteId = e.target.getAttribute('data-id');
+                if (confirm(`¿Está seguro de que desea eliminar al estudiante con ID ${estudianteId}?`)) {
+                    eliminarEstudiante(estudianteId); // Llama a la función DELETE
+                }
+            });
+        });
     }
+}
+
+// Función para eliminar estudiante (DELETE)
+async function eliminarEstudiante(id) {
+    // 1. Mostrar mensaje de carga
+    registroMensaje.textContent = `Eliminando estudiante ${id}...`;
+    registroMensaje.style.color = 'black'; 
+    registroMensaje.classList.remove('sr-only');
+
+    // Ejecuta la operación DELETE en la tabla 'estudiante' filtrando por 'id'
+    const { error } = await supabase
+        .from('estudiante')
+        .delete()
+        .eq('id', id); 
+
+    if (error) {
+        console.error('Error al eliminar estudiante:', error);
+        // Muestra el mensaje de error de Supabase para depuración
+        registroMensaje.textContent = `Error al eliminar al estudiante ${id}: ${error.message}. CAUSA: ${error.code}.`;
+        registroMensaje.style.color = 'red';
+        return;
+    }
+
+    // 2. Éxito: Mostrar mensaje y Recargar la tabla
+    registroMensaje.textContent = `Estudiante ${id} eliminado correctamente.`;
+    registroMensaje.style.color = 'orange';
+    
+    await cargarEstudiantes(); 
 }
 
 
@@ -82,6 +128,10 @@ moduleButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const target = btn.getAttribute('data-target');
         showTab(target);
+        // Si la pestaña es "estudiantes", recargar los datos
+        if (target === 'estudiantes') {
+             cargarEstudiantes(); 
+        }
     });
 });
 
@@ -92,19 +142,30 @@ loginForm.addEventListener('submit', (e) => {
     
     loginView.hidden = true;
     modulesBar.hidden = false;
-    tabContents.forEach(t => t.hidden = true);
     
-    // Muestra la vista de estudiantes
-    const defaultTab = document.getElementById('estudiantes');
-    if (defaultTab) defaultTab.hidden = false;
-    const btn = document.querySelector('.modules-link[data-target="estudiantes"]');
-    if (btn) btn.classList.add('active');
+    // Muestra la vista de estudiantes por defecto
+    showTab('estudiantes'); 
     
     // CARGA LOS DATOS DE SUPABASE DESPUÉS DEL LOGIN
     cargarEstudiantes(); 
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// LOGOUT (Cerrar Sesión Simulado)
+logoutButton && logoutButton.addEventListener('click', () => {
+    handleLogout();
+});
+
+function handleLogout() {
+    loginView.hidden = false;
+    modulesBar.hidden = true;
+    tabContents.forEach(t => t.hidden = true);
+    document.querySelector('.modules-link.active')?.classList.remove('active');
+    loginForm.reset();
+    registroMensaje.classList.add('sr-only');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 
 // =================================
@@ -139,7 +200,7 @@ formRegistro && formRegistro.addEventListener('submit', async (e) => {
 
     // INSERCIÓN de datos en Supabase
     const { error } = await supabase
-        .from('estudiante') // Nombre de tu tabla en Supabase
+        .from('estudiante') 
         .insert([nuevoEstudiante]);
 
     // 3. Manejar la respuesta
@@ -155,14 +216,14 @@ formRegistro && formRegistro.addEventListener('submit', async (e) => {
     registroMensaje.style.color = 'green';
     formRegistro.reset();
     
-    // Recargar la tabla para mostrar el nuevo registro
+    // Recargar la tabla y cambiar a la vista de estudiantes
     await cargarEstudiantes(); 
     showTab('estudiantes');
 });
 
 
 // =================================
-// 5. LÓGICA DE FILTROS (Existente)
+// 5. LÓGICA DE FILTROS
 // =================================
 
 // Buscador/filtro simple para estudiantes
@@ -170,11 +231,16 @@ function filtrarEstudiantes() {
     const query = document.getElementById('filtro').value.toLowerCase().trim();
     const filas = document.querySelectorAll('#tabla-estudiantes tbody tr');
     filas.forEach(row => {
-        const cells = Array.from(row.cells).map(c => c.textContent.toLowerCase());
-        const match = cells.some(text => text.includes(query));
+        // Obtenemos las celdas de ID y Nombre (índice 0 y 1)
+        const idText = row.cells[0]?.textContent.toLowerCase() || '';
+        const nameText = row.cells[1]?.textContent.toLowerCase() || '';
+
+        const match = idText.includes(query) || nameText.includes(query);
         row.style.display = match || query === '' ? '' : 'none';
     });
 }
+window.filtrarEstudiantes = filtrarEstudiantes; 
+
 document.getElementById('limpiar-filtro')?.addEventListener('click', () => {
     document.getElementById('filtro').value = '';
     filtrarEstudiantes();
@@ -190,6 +256,7 @@ function filtrarCursos() {
         else row.style.display = (c === creditos) ? '' : 'none';
     });
 }
+window.filtrarCursos = filtrarCursos;
 document.getElementById('limpiar-cursos')?.addEventListener('click', () => {
     document.getElementById('creditos').value = '';
     filtrarCursos();
