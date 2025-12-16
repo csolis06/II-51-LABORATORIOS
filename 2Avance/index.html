@@ -13,17 +13,15 @@
         </div>
     </header>
 
-    <!-- Pestañas -->
         <nav id="modules-bar" class="modules-bar" role="navigation" aria-label="Módulos">
         <ul class="modules-list">
             <li class="modules-item"><button data-target="estudiantes" class="modules-link">Estudiantes</button></li>
             <li class="modules-item"><button data-target="cursos" class="modules-link">Cursos</button></li>
             <li class="modules-item"><button data-target="profesores" class="modules-link">Profesores</button></li>
             <li class="modules-item"><button data-target="registro" class="modules-link">Registro</button></li>
-            <li class="modules-item"><button id="logout-button" class="modules-link">Cerrar Sesión</button></li>         </ul>
+        </ul>
     </nav>
 
-    <!-- Login -->
     <main class="container" role="main">
                 <section id="login-view" class="card login-card" aria-labelledby="login-title">
             <h2 id="login-title" class="card-title">Inicio de Sesión</h2>
@@ -40,8 +38,6 @@
             </form>
         </section>
 
-
-   <!-- Estudiantes  -->     
                 <section id="estudiantes" class="tab-content" hidden>
             <div class="card">
                 <h3 class="tab-title">Estudiantes</h3>
@@ -56,14 +52,14 @@
                 <table id="tabla-estudiantes" class="data-table" >
                     <caption class="sr-only">Lista de estudiantes</caption>
                     <thead>
-                        <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Edad</th><th>Carrera</th><th>Acciones</th></tr>                     </thead>
+                        <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Edad</th><th>Carrera</th></tr>
+                    </thead>
                     <tbody>
                                             </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Cursos -->
         <section id="cursos" class="tab-content" hidden>
             <div class="card">
                 <h3 class="tab-title">Cursos</h3>
@@ -81,15 +77,13 @@
                         <tr><th>ID</th><th>Nombre del Curso</th><th>Créditos</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>10K</td><td>Informatica</td><td>03</td></tr>
-                        <tr><td>40S</td><td>Administración</td><td>04</td></tr>
-                        <tr><td>45L</td><td>Contabilidad</td><td>04</td>></tr>
+                        <tr><td>20D</td><td>Informática</td><td>4</td></tr>
+                        <tr><td>21F</td><td>Administración</td><td>3</td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Profesores -->
         <section id="profesores" class="tab-content" hidden>
             <div class="card">
                 <h3 class="tab-title">Profesores</h3>
@@ -107,7 +101,6 @@
             </div>
         </section>
 
-        <!-- Registro -->
                 <section id="registro" class="tab-content" hidden>
             <div class="card">
                 <h3 class="tab-title">Registro de Estudiantes</h3>
@@ -145,7 +138,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
         <small>© Universidad Tecnóliga Internacional</small>
     </footer>

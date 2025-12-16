@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo Base - JavaScript Interactivo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #canvasArea { border: 1px solid black; margin-bottom: 20px; }
+        .drop-zone {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            display: inline-block;
+            margin-right: 10px;
+            text-align: center;
+            vertical-align: top;
+            padding-top: 60px;
+            background-color: #f9f9f9;
+        }
+        .drop-zone.over {
+            border-color: #333;
+            background-color: #e0e0e0;
+        }
+        img.preview {
+            display: block;
+            max-width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Canvas</h2>
+    <canvas id="canvasArea" width="300" height="200"></canvas><br>
+    <button onclick="draw()">Dibujar círculo</button>
+
+    <h2>Drag and Drop</h2>
+    <div id="drag1" draggable="true" ondragstart="drag(event)"
+         style="width:100px;height:100px;background-color:#3498db;color:#fff;text-align:center;line-height:100px;cursor:move;">
+        Arrástrame
+    </div>
+    <div id="drop1" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">Caja 1</div>
+    <div id="drop2" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">Caja 2</div>
+
+    <h2>Lectura de Archivos</h2>
+    <input type="file" onchange="previewFile(event)">
+    <img id="preview" class="preview" src="">
+
+    <script>
+        // Canvas
+        function draw() {
+            const canvas = document.getElementById('canvasArea');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(150, 100, 50, 0, 2 * Math.PI);
+            ctx.fillStyle = '#e74c3c';
+            ctx.fill();
+        }
+
+        // Drag and Drop
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+
+        // FileReader
+        function previewFile(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('preview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+</body>
+</html>

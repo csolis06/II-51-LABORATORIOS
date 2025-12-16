@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Universidad Tecnológica Internacional</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="site-header" role="banner">
+        <img src="images/logo.jpg" alt="Logo de pagína" class="logo">
+        <div class="header-title">
+            <h1>Universidad Tecnólogica Internacional</h1>
+        </div>
+    </header>
+
+    <!-- Pestañas -->
+    <nav id="modules-bar" class="modules-bar" role="navigation" hidden>
+        <ul class="modules-list">
+            <li class="modules-item">
+                <button data-target="inicio" class="modules-link">Inicio</button>
+            </li>
+            <li class="modules-item">
+                <button data-target="estudiante" class="modules-link">Estudiantes</button>
+            </li>
+            <li class="modules-item">
+                <button data-target="cursos" class="modules-link">Cursos</button>
+            </li>
+            <li class="modules-item">
+                <button data-target="profesores" class="modules-link">Profesores</button>
+            </li>
+            <li class="modules-item">
+                <button data-target="registro" class="modules-link">Matricula</button>
+            </li>
+            <li class="modules-item">
+                <button id="logout-button" class="modules-link">Cerrar Sesión</button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Inicio / Bienvenida -->
+    <section id="welcome-message" class="tab-content"hidden>
+        <div class="inicio-panel">
+
+            <div class="banner-inicio">
+                <h2>Bienvenido al Sistema Académico Universitario</h2>
+            </div>
+
+            <section class="avisos card">
+                <h3>📢 Avisos Importantes</h3>
+                <ul>
+                    <li><strong>Matrícula I Cuatrimestre:</strong> inicia el 06 de Enero</li>
+                    <li><strong>Fecha límite de cambios:</strong> 20 de Enero</li>
+                    <li><strong>Mantenimiento del sistema:</strong> viernes 21 de Enero</li>
+                </ul>
+            </section>
+
+            <section class="institucional">
+                <h3>🎓 Nuestra Universidad</h3>
+
+                <div class="institucional-grid">
+                    <article class="card">
+                        <h4>Misión</h4>
+                        <p>
+                            Formar profesionales competentes, éticos y comprometidos
+                            con el desarrollo tecnológico y social del país.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h4>Visión</h4>
+                        <p>
+                            Ser una universidad líder en educación superior,
+                            reconocida por su excelencia académica e innovación.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h4>Valores</h4>
+                        <ul>
+                            <li>Excelencia académica</li>
+                            <li>Responsabilidad</li>
+                            <li>Ética profesional</li>
+                            <li>Innovación</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <main class="container" role="main">
+
+        <!-- Login -->
+        <section id="login-view" class="card login-card" aria-labelledby="login-title">
+            <h2 id="login-title" class="card-title">Inicio de Sesión</h2>
+
+            <form id="login-form" class="form-column" action="#" method="get" novalidate>
+                <label for="email">Correo Electrónico:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="@edu.ui.ac.cr"
+                    autocomplete="username"
+                >
+
+                <label for="password">Contraseña:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    minlength="4"
+                    autocomplete="current-password"
+                >
+
+                <button type="submit" class="btn primary">Iniciar Sesión</button>
+                <label for="reset">¿Olvidó su contraseña?</label>
+            </form>
+        </section>
+
+        <!-- Estudiantes -->
+        <section id="estudiante" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Estudiantes</h3>
+
+                <form id="buscar-estudiante" class="form-inline">
+                    <label for="filtro">Buscar:</label>
+                    <input type="search" id="filtro" name="filtro">
+                    <button type="submit" class="btn">Buscar</button>
+                    <button type="button" class="btn" id="limpiar-filtro">Limpiar</button>
+                </form>
+
+                <table id="tabla-estudiante" class="data-table">
+                    <caption class="sr-only">Lista de estudiantes</caption>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Edad</th>
+                            <th>Carrera</th>
+                            <th>Curso</th>
+                            <th>Editar</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Cursos -->
+        <section id="cursos" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Cursos</h3>
+
+                <form id="buscar-cursos" class="form-inline">
+                    <label for="filtro-cursos">Buscar :</label>
+                    <input type="search" id="filtro-cursos">
+                    <button type="submit" class="btn">Buscar</button>
+                    <button type="button" class="btn" id="limpiar-cursos">Limpiar</button>
+                </form>
+
+                <table id="tabla-cursos" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Créditos</th>
+                            <th>Carrera</th>
+                            <th>Editar</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3 class="tab-title">Registro de Cursos</h3>
+
+                <form id="form-cursos" class="form-column" novalidate>
+                    <label>ID Curso:</label>
+                    <input type="text" id="cursos-id1" required>
+
+                    <label>Nombre del Curso:</label>
+                    <input type="text" id="cursos-nombre" required>
+
+                    <label>Créditos:</label>
+                    <input type="number" id="cursos-creditos" required min="1" max="10">
+
+                    <label>Carrera:</label>
+                    <select id="cursos-carrera" required>
+                        <option value="">Seleccione...</option>
+                        <option value="">Seleccione...</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Administración">Administración</option>
+                        <option value="Contabilidad">Contabilidad</option>
+                        <option value="Arquitectura">Derecho</option>
+                        <option value="Arquitectura">Psicología</option>
+                        <option value="Arquitectura">Medicina</option>
+                    </select>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Registrar</button>
+                        <button type="reset" class="btn">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Profesores -->
+        <section id="profesores" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Profesores</h3>
+
+                <form id="buscar-profesores" class="form-inline">
+                    <label for="filtro-profesores">Buscar:</label>
+                    <input type="search" id="filtro-profesores">
+                    <button type="submit" class="btn">Buscar</button>
+                    <button type="button" class="btn" id="limpiar-profesores">Limpiar</button>
+                </form>
+
+                <table
+                    id="tabla-profesores"
+                    class="data-table"
+                    aria-describedby="caption-profesores"
+                >
+                    <caption id="caption-profesores" class="sr-only">
+                        Lista de profesores
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Sede</th>
+                            <th>Asignación</th>
+                            <th>Editar</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3 class="tab-title">Registro de Profesores</h3>
+
+                <form id="form-profesor" class="form-column" novalidate>
+                    <label>ID Profesor:</label>
+                    <input type="text" id="prof-id" required>
+
+                    <label>Nombre Completo:</label>
+                    <input type="text" id="prof-nombre" required>
+
+                    <label>Email:</label>
+                    <input type="email" id="prof-email" required>
+
+                    <label>Sede:</label>
+                    <input type="text" id="prof-sede" required>
+
+                    <label>Asignación:</label>
+                    <select id="prof-asignacion" required>
+                        <option value="">Seleccione...</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Administración">Administración</option>
+                        <option value="Economía">Economía</option>
+                    </select>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Registrar</button>
+                        <button type="reset" class="btn">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Matrícula -->
+        <section id="registro" class="tab-content" hidden>
+            <div class="card">
+                <h3 class="tab-title">Registro de Estudiantes</h3>
+
+                <form id="form-registro" class="form-column" method="post" novalidate>
+                    <label for="reg-id">ID Estudiante:</label>
+                    <input
+                        type="text"
+                        id="reg-id"
+                        name="reg-id"
+                        required
+                        pattern="^[0-9]{2}[A-Z]$"
+                        placeholder="Ej: 14B"
+                    >
+
+                    <label for="reg-nombre">Nombre Completo:</label>
+                    <input
+                        type="text"
+                        id="reg-nombre"
+                        name="reg-nombre"
+                        required
+                        minlength="5"
+                        placeholder="Nombre Apellido"
+                    >
+
+                    <label for="reg-email">Correo Institucional:</label>
+                    <input
+                        type="email"
+                        id="reg-email"
+                        name="reg-email"
+                        required
+                        placeholder="usuario@edu.ui.ac.cr"
+                    >
+
+                    <label for="reg-edad">Edad:</label>
+                    <input type="number" id="reg-edad" name="reg-edad" required min="17" max="120">
+
+                    <label for="reg-carrera">Carrera:</label>
+                    <select id="reg-carrera" name="reg-carrera" required>
+                        <option value="">Seleccione...</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Administración">Administración</option>
+                        <option value="Contabilidad">Contabilidad</option>
+                        <option value="Arquitectura">Derecho</option>
+                        <option value="Arquitectura">Psicología</option>
+                        <option value="Arquitectura">Medicina</option>
+                    </select>
+
+                    <label for="reg-curso">Curso:</label>
+                    <select id="reg-curso" name="reg-curso" required>
+                        <option value="">Seleccione...</option>
+                        <option value="Bases de datos">Bases de datos</option>
+                        <option value="Economía">Economía</option>
+                        <option value="Finanzas">Finanzas</option>
+                    </select>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Registrar</button>
+                        <button type="reset" class="btn">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <small>© Universidad Tecnóliga Internacional</small>
+    </footer>
+
+    <script type="module" src="supabaseClient.js"></script>
+    <script type="module" src="app.js"></script>
+
+</body>
+</html>
