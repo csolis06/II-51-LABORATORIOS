@@ -1,0 +1,78 @@
+/* ===== FONDO GENERAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("images/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+/* ===== GRID DE LABORATORIOS ===== */
+.grid {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* ===== TARJETAS ===== */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    color: #222;
+    border-radius: 14px;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 12px;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 0 12px 14px;
+    font-size: 14px;
+    color: #555;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.45);
+}
+
+/* ===== DESTACADO ===== */
+.card.destacado {
+    border: 3px solid #6a5acd;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+}
