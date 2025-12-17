@@ -1,0 +1,68 @@
+classDiagram
+
+class Estudiante {
+    -id : string
+    -nombre : string
+    -email : string
+    -edad : int
+    -carrera : string
+    +registrar()
+    +editar()
+    +eliminar()
+    +consultarMatricula()
+}
+
+class Curso {
+    -id : string
+    -nombre : string
+    -creditos : int
+    -carrera : string
+    +registrar()
+    +editar()
+    +eliminar()
+}
+
+class Profesor {
+    -id : string
+    -nombre : string
+    -email : string
+    -sede : string
+    -asignacion : string
+    +registrar()
+    +editar()
+    +eliminar()
+}
+
+class Periodo {
+    -idPeriodo : int
+    -nombre : string
+    -anio : int
+    -activo : boolean
+    +iniciarPeriodo()
+    +finalizarPeriodo()
+}
+
+class Grupo {
+    -idGrupo : int
+    -numeroGrupo : int
+    -horario : string
+    +asignarProfesor()
+    +consultarEstudiantes()
+}
+
+class Matricula {
+    -idMatricula : int
+    -fecha : date
+}
+
+%% =========================
+%% RELACIONES
+%% =========================
+
+Estudiante "1" --> "0..*" Matricula : realiza
+Curso "1" --> "0..*" Grupo : ofrece
+Profesor "1" --> "0..*" Grupo : imparte
+Periodo "1" --> "0..*" Grupo : contiene
+Grupo "1" --> "0..*" Matricula : recibe
+Matricula "*" --> "1" Estudiante
+Matricula "*" --> "1" Grupo
