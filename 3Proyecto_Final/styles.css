@@ -1,5 +1,5 @@
 /* =====================================================
-   VARIABLES DE COLOR
+   1. VARIABLES DE COLOR
 ===================================================== */
 :root {
     --card: #5c5da5;
@@ -10,7 +10,7 @@
 }
 
 /* =====================================================
-   ESTILOS BASE
+   2. ESTILOS BASE Y CUERPO
 ===================================================== */
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -27,7 +27,7 @@ body {
 }
 
 /* =====================================================
-   HEADER Y MENÚ
+   3. HEADER (LOGOTIPO Y GRADIENTE)
 ===================================================== */
 .site-header {
     display: flex;
@@ -45,30 +45,7 @@ body {
 }
 
 /* =====================================================
-   LOGIN
-===================================================== */
-.login-card {
-    max-width: 380px;          /* 🔥 más compacto */
-    margin: 100px auto;        /* centrado vertical */
-}
-
-.login-card .form-column {
-    gap: 14px;
-}
-
-.card-title {
-    background: linear-gradient(135deg, #312591, #859398);
-    color: #ffffff;
-    text-align: center;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 25px;
-    font-weight: 400;
-    margin: -05px -05px 05px;  
-}
-
-/* =====================================================
-   MENÚ
+   4. NAVEGACIÓN (MENÚ DE MÓDULOS)
 ===================================================== */
 .modules-bar {
     background: var(--menu-bg);
@@ -110,25 +87,58 @@ body {
 }
 
 /* =====================================================
-   CONTENEDORES GENERALES
+   5. LOGIN (TARJETA Y ALERTAS)
 ===================================================== */
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 16px;
+.login-card {
+    max-width: 380px;          /* 🔥 más compacto */
+    margin: 100px auto;        /* centrado vertical */
 }
 
-.card {
-    background: var(--card);
-    padding: 18px;
-    border-radius: 10px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+.login-card .form-column {
+    gap: 14px;
+}
+
+.card-title {
+    background: linear-gradient(135deg, #312591, #859398);
+    color: #ffffff;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 25px;
+    font-weight: 400;
+    margin: -05px -05px 05px;  
+}
+
+.login-alert {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(135deg, #dc3545, #b02a37);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.45);
+    animation: slideFade 0.4s ease;
+}
+
+.login-alert.hidden {
+    display: none;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =====================================================
-   BOTONES
+   6. COMPONENTES: BOTONES Y FORMULARIOS
 ===================================================== */
 .btn {
     padding: 8px 12px;
@@ -147,311 +157,6 @@ body {
     font-size: 15px;
     font-weight: 600;
     border-radius: 10px;
-}
-
-.btn.danger {
-    background-color: #dc3545;
-    color: white;
-    border: 1px solid #c82333;
-}
-
-.btn.danger:hover {
-    background-color: #c82333;
-}
-
-/* =====================================================
-   FORMULARIOS
-===================================================== */
-.form-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.form-column label {
-    font-weight: bold;
-    color: #fcfbfb;
-}
-
-.form-column input,
-.form-column select {
-    padding: 12px;            
-    border-radius: 8px;       
-    font-size: 15px;
-}
-
-.form-inline {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-}
-
-.form-inline label {
-    color: #fff;
-    font-weight: 600;
-}
-
-/* =====================================================
-   TABLAS
-===================================================== */
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 6px;
-    background: #fff;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.data-table thead {
-    background: #383636;
-    color: #fff;
-}
-
-.data-table th,
-.data-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-.data-table tbody tr:nth-child(even) {
-    background: #f9f9f9;
-}
-
-/* =====================================================
-   INICIO / WELCOME
-===================================================== */
-#welcome-message {
-    max-width: 1100px;
-    margin: 10px auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-
-.avisos li strong {
-    font-size: 18px;
-    font-weight: 700;
-}
-.inicio-panel {
-    position: relative;
-    background-image: url('images/FNF.PNG.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(185, 166, 166, 0.45);
-}
-
-.inicio-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-}
-
-.inicio-panel > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* =====================================================
-   BANNER INICIO
-===================================================== */
-.banner-inicio {
-    background: linear-gradient(135deg, #383636, #5c5da5);
-    color: white;
-    padding: 30px;
-    border-radius: 16px;
-    text-align: center;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-}
-
-.banner-inicio h2 {
-    font-size: 32px;
-}
-
-/* =====================================================
-   AVISOS
-===================================================== */
-.avisos {
-    background: #5c5da5;
-    color: #efecec;
-    text-align: center;
-
-    padding: 10px 20px;   /* 🔥 antes era muy grande */
-    margin: 0 auto;       /* centra mejor */
-    max-width: 550px;     /* evita que sea tan ancho */
-    border-radius: 16px;
-    
-}
-.avisos h3 {
-    color: #f4f4f4;
-    text-align: center;
-}
-
-
-.avisos li strong {
-    color: #fbfbfb;
-    text-align: center;
-}
-.avisos li strong {
-    display: inline-block;
-    margin-right: 6px;
-}
-.avisos li::before {
-    content: "📌 ";
-}
-.avisos ul {
-    list-style: none;
-}
-
-/* =====================================================
-   INSTITUCIONAL
-===================================================== */
-.institucional {
-    margin-top: 30px;
-    
-}
-
-
-/* Nuestra univeridad*/
-.institucional h3 {
-    background: linear-gradient(135deg, #383636, #5c5da5);
-    color: #fefeff;
-    font-size: 26px;
-    text-align: center;
-
-    padding: 10px 10px;   /* 🔥 antes era muy grande */
-    margin: auto;       /* centra mejor */
-    max-width: 300px;
-    margin-bottom: 35px;
-    border-radius: 16px;
-}
-
-.institucional-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.institucional .card {
-    background-color: #7554a0;
-    color: #f0f0f0;
-}
-
-.institucional h4 {
-    color: #fff;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-.site-footer {
-    text-align: center;
-    padding: 12px;
-    color: #666;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-@media (max-width: 900px) {
-    .institucional-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .banner-inicio h2 {
-        white-space: normal;
-    }
-}
-
-@media (max-width: 600px) {
-    .modules-list {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .form-inline {
-        flex-direction: column;
-    }
-}
-
-/* ===== ESTUDIANTES ===== */
-#estudiante .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== CURSOS ===== */
-#cursos .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== PROFESORES ===== */
-#profesores .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== MATRÍCULA / REGISTRO ESTUDIANTES ===== */
-#registro .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== REGISTRO DE CURSOS (formulario) ===== */
-#cursos #form-cursos {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 18px;
-    border-radius: 10px;
-}
-
-/* ===== REGISTRO DE PROFESORES ===== */
-#profesores #form-profesor {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 18px;
-    border-radius: 10px;
-}
-
-/* Texto general de la tabla */
-.data-table td {
-    color: #1f2933;          /* gris oscuro legible */
-    font-size: 15px;
-    font-weight: 500;
-}
-
-/* Encabezados */
-.data-table th {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-/* Emails un poco más suaves */
-.data-table td:nth-child(3) {
-    color: #374151;
-    font-weight: 500;
-}
-
-/* IDs más fuertes */
-.data-table td:first-child {
-    font-weight: 700;
-    color: #111827;
-}
-
-/* Hover para lectura visual */
-.data-table tbody tr:hover {
-    background-color: #e8eaf6;
-    transition: background-color 0.2s ease;
 }
 
 .btn.primary:hover {
@@ -461,157 +166,6 @@ body {
     transition: all 0.25s ease;
 }
 
-/* =====================================================
-   VARIABLES DE COLOR
-===================================================== */
-:root {
-    --card: #5c5da5;
-    --accent: #000000;
-    --menu-bg: #7554a0;
-    --menu-accent: #ffffff;
-    --muted: #f5f4f6;
-}
-
-/* =====================================================
-   ESTILOS BASE
-===================================================== */
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url('images/lol.jpg');
-    background-size: cover;
-    background-position: center center;
-    min-height: 100vh;
-    margin: 0;
-    color: #222;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-/* =====================================================
-   HEADER Y MENÚ
-===================================================== */
-.site-header {
-    display: flex;
-    align-items: center;
-    padding: 18px 24px;
-    background: linear-gradient(135deg, #4f4d5f, #859398);
-    color: #fff;
-}
-
-.site-header .logo {
-    width: 60px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 6px;
-}
-
-/* =====================================================
-   LOGIN
-===================================================== */
-.login-card {
-    max-width: 380px;          /* 🔥 más compacto */
-    margin: 100px auto;        /* centrado vertical */
-}
-
-.login-card .form-column {
-    gap: 14px;
-}
-
-.card-title {
-    background: linear-gradient(135deg, #312591, #859398);
-    color: #ffffff;
-    text-align: center;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 25px;
-    font-weight: 400;
-    margin: -05px -05px 05px;  
-}
-
-/* =====================================================
-   MENÚ
-===================================================== */
-.modules-bar {
-    background: var(--menu-bg);
-    color: var(--menu-accent);
-    width: 100%;
-}
-
-.modules-list {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    list-style: none;
-    gap: 12px;
-    padding: 18px 16px;
-    align-items: center;
-}
-
-.modules-item {
-    list-style: none;
-}
-
-.modules-link {
-    background: transparent;
-    border: none;
-    color: var(--menu-accent);
-    font-weight: 750;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 15px;
-    transition: all 0.3s ease;
-}
-
-.modules-link:hover,
-.modules-link.active {
-    background-color: #ffffff;
-    color: #7554a0;
-    transform: scale(1.05);
-}
-
-/* =====================================================
-   CONTENEDORES GENERALES
-===================================================== */
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 16px;
-}
-
-.card {
-    background: var(--card);
-    padding: 18px;
-    border-radius: 10px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-/* =====================================================
-   BOTONES
-===================================================== */
-.btn {
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    background: transparent;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn.primary {
-    background: var(--accent);
-    border: none;
-    padding: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 10px;
-}
-
 .btn.danger {
     background-color: #dc3545;
     color: white;
@@ -622,9 +176,7 @@ body {
     background-color: #c82333;
 }
 
-/* =====================================================
-   FORMULARIOS
-===================================================== */
+/* Estilos de Formulario */
 .form-column {
     display: flex;
     flex-direction: column;
@@ -657,7 +209,7 @@ body {
 }
 
 /* =====================================================
-   TABLAS
+   7. TABLAS DE DATOS
 ===================================================== */
 .data-table {
     width: 100%;
@@ -677,15 +229,79 @@ body {
 .data-table td {
     border: 1px solid #ddd;
     padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.data-table th {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.data-table td {
+    color: #1f2933;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.data-table td:first-child {
+    font-weight: 700;
+    color: #111827;
+}
+
+.data-table td:nth-child(3) {
+    color: #374151;
+    font-weight: 500;
 }
 
 .data-table tbody tr:nth-child(even) {
     background: #f9f9f9;
 }
 
+.data-table tbody tr:hover {
+    background-color: #e8eaf6;
+    transition: background-color 0.2s ease;
+}
+
 /* =====================================================
-   INICIO / WELCOME
+   8. ESTRUCTURAS DE CONTENEDOR Y CARDS
 ===================================================== */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 16px;
+}
+
+.card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Colores de Cards por Módulo */
+#estudiante .card,
+#cursos .card,
+#profesores .card,
+#registro .card {
+    background: linear-gradient(135deg, #283048, #859398);
+    color: rgba(228, 225, 228, 0.947);
+}
+
+/* Fondo especial formularios internos */
+#cursos #form-cursos,
+#profesores #form-profesor {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 18px;
+    border-radius: 10px;
+}
+
+/* =====================================================
+   9. VISTA DE INICIO (WELCOME / AVISOS)
+==================================================== */
 #welcome-message {
     max-width: 1100px;
     margin: 10px auto;
@@ -696,11 +312,6 @@ body {
     animation: fadeIn 0.6s ease-in-out;
 }
 
-
-.avisos li strong {
-    font-size: 18px;
-    font-weight: 700;
-}
 .inicio-panel {
     position: relative;
     background-image: url('images/FNF.PNG.jpg');
@@ -723,9 +334,6 @@ body {
     z-index: 1;
 }
 
-/* =====================================================
-   BANNER INICIO
-===================================================== */
 .banner-inicio {
     background: linear-gradient(135deg, #383636, #5c5da5);
     color: white;
@@ -740,59 +348,51 @@ body {
     font-size: 32px;
 }
 
-/* =====================================================
-   AVISOS
-===================================================== */
+/* Avisos */
 .avisos {
     background: rgba(93, 72, 196, 0.92);
     color: #efecec;
     text-align: center;
-
-    padding: 10px 20px;   /* 🔥 antes era muy grande */
-    margin: 0 auto;       /* centra mejor */
-    max-width: 550px;     /* evita que sea tan ancho */
+    padding: 10px 20px;
+    margin: 0 auto;
+    max-width: 550px;
     border-radius: 16px;
-    
 }
-.avisos h3 {
+
+.avisos h3, .avisos li strong {
     color: #f4f4f4;
     text-align: center;
 }
 
-
 .avisos li strong {
-    color: #fbfbfb;
-    text-align: center;
-}
-.avisos li strong {
+    font-size: 18px;
+    font-weight: 700;
     display: inline-block;
     margin-right: 6px;
 }
+
 .avisos li::before {
     content: "📌 ";
 }
+
 .avisos ul {
     list-style: none;
 }
 
 /* =====================================================
-   INSTITUCIONAL
+   10. SECCIÓN INSTITUCIONAL
 ===================================================== */
 .institucional {
     margin-top: 30px;
-    
 }
 
-
-/* Nuestra univeridad*/
 .institucional h3 {
     background: linear-gradient(135deg, #383636, #5c5da5);
     color: #fefeff;
     font-size: 26px;
     text-align: center;
-
-    padding: 10px 10px;   /* 🔥 antes era muy grande */
-    margin: auto;       /* centra mejor */
+    padding: 10px 10px;
+    margin: auto;
     max-width: 300px;
     margin-bottom: 35px;
     border-radius: 16px;
@@ -810,12 +410,18 @@ body {
     text-align: center;
 }
 
+.institucional .card ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
 .institucional h4 {
     color: #fff;
 }
 
 /* =====================================================
-   FOOTER
+   11. FOOTER Y MEDIA QUERIES (RESPONSIVE)
 ===================================================== */
 .site-footer {
     text-align: center;
@@ -823,14 +429,10 @@ body {
     color: #666;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
 @media (max-width: 900px) {
     .institucional-grid {
         grid-template-columns: 1fr;
     }
-
     .banner-inicio h2 {
         white-space: normal;
     }
@@ -841,137 +443,7 @@ body {
         flex-wrap: wrap;
         justify-content: center;
     }
-
     .form-inline {
         flex-direction: column;
-    }
-}
-
-/* ===== ESTUDIANTES ===== */
-#estudiante .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== CURSOS ===== */
-#cursos .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== PROFESORES ===== */
-#profesores .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== MATRÍCULA / REGISTRO ESTUDIANTES ===== */
-#registro .card {
-    background: linear-gradient(135deg, #283048, #859398);
-    color: rgba(228, 225, 228, 0.947);
-}
-
-/* ===== REGISTRO DE CURSOS (formulario) ===== */
-#cursos #form-cursos {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 18px;
-    border-radius: 10px;
-}
-
-/* ===== REGISTRO DE PROFESORES ===== */
-#profesores #form-profesor {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 18px;
-    border-radius: 10px;
-}
-
-/* Texto general de la tabla */
-.data-table td {
-    color: #1f2933;          /* gris oscuro legible */
-    font-size: 15px;
-    font-weight: 500;
-}
-
-/* Encabezados */
-.data-table th {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-/* Emails un poco más suaves */
-.data-table td:nth-child(3) {
-    color: #374151;
-    font-weight: 500;
-}
-
-/* IDs más fuertes */
-.data-table td:first-child {
-    font-weight: 700;
-    color: #111827;
-}
-
-/* Hover para lectura visual */
-.data-table tbody tr:hover {
-    background-color: #e8eaf6;
-    transition: background-color 0.2s ease;
-}
-
-.btn.primary:hover {
-    background: #2d2d2d;          /* color más oscuro */
-    transform: translateY(-2px);  /* efecto de elevación */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
-    transition: all 0.25s ease;
-}
-
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.data-table th,
-.data-table td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 10px;
-}
-.institucional .card ul {
-    list-style: none;      /* quita los puntos */
-    padding-left: 0;       /* quita la sangría */
-    margin: 0;
-}
-/* =====================================
-   ALERTA LOGIN (BURBUJA)
-===================================== */
-.login-alert {
-    margin-top: 16px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-
-    background: linear-gradient(135deg, #dc3545, #b02a37);
-    color: #ffffff;
-
-    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.45);
-    animation: slideFade 0.4s ease;
-}
-
-/* Ocultar */
-.login-alert.hidden {
-    display: none;
-}
-
-/* Animación */
-@keyframes slideFade {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }

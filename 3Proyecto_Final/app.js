@@ -11,6 +11,7 @@ const modulesBar = document.getElementById('modules-bar');
 const moduleButtons = document.querySelectorAll('.modules-link');
 const tabContents = document.querySelectorAll('.tab-content');
 const formRegistro = document.getElementById('form-registro');
+const logoutButton = document.getElementById('logout-button');
 
 let registroMensaje = document.getElementById('registro-mensaje');
 let estudianteEditando = null;
@@ -23,10 +24,8 @@ if (!registroMensaje) {
     document.body.appendChild(registroMensaje);
 }
 
-const logoutButton = document.getElementById('logout-button');
-
 // =================================
-// UTILIDADES
+// 2. UTILIDADES GENERALES
 // =================================
 
 function escapeHtml(text) {
@@ -60,7 +59,7 @@ function showTab(id) {
 }
 
 // =================================
-// ESTUDIANTES
+// 3. SECCIÓN: ESTUDIANTES
 // =================================
 
 async function cargarestudiante() {
@@ -81,8 +80,7 @@ async function cargarestudiante() {
     data.forEach(est => {
         const tr = document.createElement('tr');
 
-        tr.innerHTML = `
-            <td>${escapeHtml(est.id)}</td>
+        tr.innerHTML = `<td>${escapeHtml(est.id)}</td>
             <td>${escapeHtml(est.nombre)}</td>
             <td>${escapeHtml(est.email)}</td>
             <td>${escapeHtml(est.edad.toString())}</td>
@@ -95,9 +93,7 @@ async function cargarestudiante() {
                 <button class="btn danger btn-delete" data-id="${est.id}">
                     Eliminar
                 </button>
-            </td>
-        `;
-
+            </td>`;
         tablaBody.appendChild(tr);
     });
 
@@ -117,10 +113,6 @@ async function cargarestudiante() {
     });
 }
 
-document.getElementById('buscar-estudiante')?.addEventListener('submit', e => {
-    e.preventDefault();
-    filtrarEstudiantes();
-});
 async function eliminarEstudiante(id) {
     registroMensaje.textContent = `Eliminando estudiante ${id}...`;
     registroMensaje.style.color = 'black';
@@ -137,12 +129,11 @@ async function eliminarEstudiante(id) {
         return;
     }
 
-    registroMensaje.textContent =
-        `Estudiante ${id} eliminado correctamente.`;
-    registroMensaje.style.color = 'orange';
+   
 
     await cargarestudiante();
 }
+
 async function editarEstudiante(id) {
     const { data, error } = await supabase
         .from('estudiante')
@@ -164,7 +155,9 @@ async function editarEstudiante(id) {
     document.getElementById('reg-curso').value = data.curso;
 
     estudianteEditando = id;
-    showTab('registro');}
+    showTab('registro');
+}
+
 formRegistro.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -201,8 +194,7 @@ formRegistro.addEventListener('submit', async (e) => {
     }
 
     registroMensaje.textContent = estudianteEditando
-        ? ''
-        : 'Estudiante registrado correctamente';
+       
     registroMensaje.style.color = 'green';
 
     estudianteEditando = null;
@@ -213,9 +205,42 @@ formRegistro.addEventListener('submit', async (e) => {
     showTab('estudiante');
 });
 
+// Filtros y eventos de Estudiantes
+function filtrarEstudiantes() {
+    const q = document.getElementById('filtro').value.toLowerCase().trim();
+    const filas = document.querySelectorAll('#tabla-estudiante tbody tr');
+
+    filas.forEach(row => {
+        const id = row.cells[0].textContent.toLowerCase();
+        const nombre = row.cells[1].textContent.toLowerCase();
+
+        row.style.display =
+            id.includes(q) || nombre.includes(q) || q === ''
+                ? ''
+                : 'none';
+    });
+}
+window.filtrarEstudiantes = filtrarEstudiantes;
+
+document.getElementById('buscar-estudiante')?.addEventListener('submit', e => {
+    e.preventDefault();
+    filtrarEstudiantes();
+});
+
+document.getElementById('limpiar-filtro')?.addEventListener('click', () => {
+    document.getElementById('filtro').value = '';
+    filtrarEstudiantes();
+});
+
+document.querySelectorAll('.btn-edit-est').forEach(btn => {
+    btn.addEventListener('click', e => {
+        console.log("Editando estudiante:", e.target.dataset.id);
+        editarEstudiante(e.target.dataset.id);
+    });
+});
 
 // =================================
-// CURSOS
+// 4. SECCIÓN: CURSOS
 // =================================
 
 async function cargarcursos() {
@@ -236,8 +261,7 @@ async function cargarcursos() {
     data.forEach(curso => {
         const tr = document.createElement('tr');
 
-        tr.innerHTML = `
-            <td>${escapeHtml(curso.id1)}</td>
+        tr.innerHTML = `<td>${escapeHtml(curso.id1)}</td>
             <td>${escapeHtml(curso.nombre)}</td>
             <td>${escapeHtml(curso.creditos.toString())}</td>
             <td>${escapeHtml(curso.carrera)}</td>
@@ -250,9 +274,7 @@ async function cargarcursos() {
                 <button class="btn danger btn-delete-curso" data-id="${curso.id1}">
                     Eliminar
                 </button>
-            </td>
-        `;
-
+            </td>`;
         tablaBody.appendChild(tr);
     });
 
@@ -271,16 +293,6 @@ async function cargarcursos() {
         });
     });
 }
-
-document.getElementById('buscar-cursos')?.addEventListener('submit', e => {
-    e.preventDefault();
-    filtrarCursos();
-});
-
-document.getElementById('limpiar-cursos')?.addEventListener('click', () => {
-    document.getElementById('filtro-cursos').value = '';
-    filtrarCursos();
-});
 
 async function editarCurso(id) {
     const { data, error } = await supabase
@@ -320,9 +332,7 @@ async function eliminarCurso(id) {
         return;
     }
 
-    registroMensaje.textContent =
-        `Curso ${id} eliminado correctamente.`;
-    registroMensaje.style.color = 'orange';
+ 
 
     await cargarcursos();
 }
@@ -361,8 +371,37 @@ document.getElementById('form-cursos').addEventListener('submit', async (e) => {
 
     await cargarcursos();
 });
+
+// Filtros de Cursos
+function filtrarCursos() {
+    const q = document.getElementById('filtro-cursos').value.toLowerCase().trim();
+    const filas = document.querySelectorAll('#tabla-cursos tbody tr');
+
+    filas.forEach(row => {
+        const id = row.cells[0].textContent.toLowerCase();
+        const nombre = row.cells[1].textContent.toLowerCase();
+
+        row.style.display =
+            id.includes(q) || nombre.includes(q) || q === ''
+                ? ''
+                : 'none';
+    });
+}
+
+document.getElementById('buscar-cursos')?.addEventListener('submit', e => {
+    e.preventDefault();
+    filtrarCursos();
+});
+
+document.getElementById('limpiar-cursos')?.addEventListener('click', () => {
+    document.getElementById('filtro-cursos').value = '';
+    filtrarCursos();
+});
+
+filtrarCursos();
+
 // =================================
-// PROFESORES
+// 5. SECCIÓN: PROFESORES
 // =================================
 
 async function cargarProfesores() {
@@ -383,8 +422,7 @@ async function cargarProfesores() {
     data.forEach(prof => {
         const tr = document.createElement('tr');
 
-        tr.innerHTML = `
-            <td>${escapeHtml(prof.id)}</td>
+        tr.innerHTML = `<td>${escapeHtml(prof.id)}</td>
             <td>${escapeHtml(prof.nombre)}</td>
             <td>${escapeHtml(prof.email)}</td>
             <td>${escapeHtml(prof.sede)}</td>
@@ -398,9 +436,7 @@ async function cargarProfesores() {
                 <button class="btn danger btn-delete-prof" data-id="${prof.id}">
                     Eliminar
                 </button>
-            </td>
-        `;
-
+            </td>`;
         tablaBody.appendChild(tr);
     });
 
@@ -418,10 +454,6 @@ async function cargarProfesores() {
         });
     });
 }
-document.getElementById('limpiar-profesores')?.addEventListener('click', () => {
-    document.getElementById('filtro-profesores').value = '';
-    filtrarProfesores();
-});
 
 async function eliminarProfesor(id) {
     registroMensaje.textContent = `Eliminando profesor ${id}...`;
@@ -438,21 +470,10 @@ async function eliminarProfesor(id) {
         return;
     }
 
-    registroMensaje.textContent =
-        `Profesor ${id} eliminado correctamente.`;
-    registroMensaje.style.color = 'orange';
+ 
 
     await cargarProfesores();
 }
-document.getElementById('buscar-profesores')?.addEventListener('submit', e => {
-    e.preventDefault();
-    filtrarProfesores();
-});
-
-document.getElementById('limpiar-filtro')?.addEventListener('click', () => {
-    document.getElementById('filtro').value = '';
-    filtrarEstudiantes();
-});
 
 async function editarProfesor(id) {
     const { data, error } = await supabase
@@ -476,12 +497,6 @@ async function editarProfesor(id) {
     profesorEditando = id;
     showTab('profesores');
 }
-document.querySelectorAll('.btn-edit-est').forEach(btn => {
-    btn.addEventListener('click', e => {
-        console.log("Editando estudiante:", e.target.dataset.id);
-        editarEstudiante(e.target.dataset.id);
-    });
-});
 
 document.getElementById('form-profesor').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -519,18 +534,60 @@ document.getElementById('form-profesor').addEventListener('submit', async (e) =>
     await cargarProfesores();
 });
 
+// Filtros de Profesores
+function filtrarProfesores() {
+    const q = document
+        .getElementById('filtro-profesores')
+        .value.toLowerCase()
+        .trim();
+
+    const filas = document.querySelectorAll('#tabla-profesores tbody tr');
+
+    filas.forEach(row => {
+        const id = row.cells[0].textContent.toLowerCase();
+        const nombre = row.cells[1].textContent.toLowerCase();
+        const email = row.cells[2].textContent.toLowerCase();
+
+        row.style.display =
+            id.includes(q) ||
+            nombre.includes(q) ||
+            email.includes(q) ||
+            q === ''
+                ? ''
+                : 'none';
+    });
+}
+window.filtrarProfesores = filtrarProfesores;
+
+document.getElementById('limpiar-profesores')?.addEventListener('click', () => {
+    document.getElementById('filtro-profesores').value = '';
+    filtrarProfesores();
+});
+
+document.getElementById('buscar-profesores')?.addEventListener('submit', e => {
+    e.preventDefault();
+    filtrarProfesores();
+});
+
 // =================================
-// EVENTOS LOGIN / LOGOUT
+// 6. EVENTOS LOGIN / LOGOUT Y SESIÓN
 // =================================
 
-window.addEventListener('load', () => {
-    loginView.hidden = false;
-    modulesBar.hidden = true;
+window.addEventListener('load', async () => {
+    const { data: { session } } = await supabase.auth.getSession();
 
-    tabContents.forEach(t => t.hidden = true);
-    welcomeMessage.hidden = true;
-
-    moduleButtons.forEach(b => b.classList.remove('active'));
+    if (session) {
+        // Usuario ya logueado
+        loginView.hidden = true;
+        modulesBar.hidden = false;
+        showTab('inicio');
+    } else {
+        loginView.hidden = false;
+        modulesBar.hidden = true;
+        tabContents.forEach(t => t.hidden = true);
+        welcomeMessage.hidden = true;
+        moduleButtons.forEach(b => b.classList.remove('active'));
+    }
 });
 
 moduleButtons.forEach(btn => {
@@ -561,13 +618,13 @@ loginForm.addEventListener('submit', async (e) => {
         password
     });
 
- const loginAlert = document.getElementById('login-alert');
+    const loginAlert = document.getElementById('login-alert');
 
-if (error) {
-    loginAlert.textContent = '❌ Correo o contraseña incorrectos';
-    loginAlert.classList.remove('hidden');
-    return;
-}
+    if (error) {
+        loginAlert.textContent = '❌ Correo o contraseña incorrectos';
+        loginAlert.classList.remove('hidden');
+        return;
+    }
 
     loginAlert.classList.add('hidden');
     loginView.hidden = true;
@@ -588,82 +645,3 @@ logoutButton?.addEventListener('click', async () => {
     registroMensaje.textContent = 'Sesión cerrada';
     registroMensaje.style.color = 'black';
 });
-window.addEventListener('load', async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (session) {
-        // Usuario ya logueado
-        loginView.hidden = true;
-        modulesBar.hidden = false;
-        showTab('inicio');
-    } else {
-        loginView.hidden = false;
-        modulesBar.hidden = true;
-        tabContents.forEach(t => t.hidden = true);
-    }
-});
-
-// =================================
-// FILTROS Y EDICIÓN
-// =================================
-
-function filtrarEstudiantes() {
-    const q = document.getElementById('filtro').value.toLowerCase().trim();
-    const filas = document.querySelectorAll('#tabla-estudiante tbody tr');
-
-    filas.forEach(row => {
-        const id = row.cells[0].textContent.toLowerCase();
-        const nombre = row.cells[1].textContent.toLowerCase();
-
-        row.style.display =
-            id.includes(q) || nombre.includes(q) || q === ''
-                ? ''
-                : 'none';
-    });
-}
-
-window.filtrarEstudiantes = filtrarEstudiantes;
-
-function filtrarCursos() {
-    const q = document.getElementById('filtro-cursos').value.toLowerCase().trim();
-    const filas = document.querySelectorAll('#tabla-cursos tbody tr');
-
-    filas.forEach(row => {
-        const id = row.cells[0].textContent.toLowerCase();
-        const nombre = row.cells[1].textContent.toLowerCase();
-
-        row.style.display =
-            id.includes(q) || nombre.includes(q) || q === ''
-                ? ''
-                : 'none';
-    });
-}
-
-filtrarCursos();
-
-function filtrarProfesores() {
-    const q = document
-        .getElementById('filtro-profesores')
-        .value.toLowerCase()
-        .trim();
-
-    const filas = document.querySelectorAll('#tabla-profesores tbody tr');
-
-    filas.forEach(row => {
-        const id = row.cells[0].textContent.toLowerCase();
-        const nombre = row.cells[1].textContent.toLowerCase();
-        const email = row.cells[2].textContent.toLowerCase();
-
-        row.style.display =
-            id.includes(q) ||
-            nombre.includes(q) ||
-            email.includes(q) ||
-            q === ''
-                ? ''
-                : 'none';
-    });
-}
-
-window.filtrarProfesores = filtrarProfesores;
-
-
