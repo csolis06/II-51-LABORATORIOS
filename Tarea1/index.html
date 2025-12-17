@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Box Shadow Example</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+
+    .box {
+      background: rgba(19, 18, 18, 0.63);
+      padding: 4em;
+      border-radius: 10px;
+      box-shadow: 15px 10px 20px rgba(3, 3, 3, 0.884);
+      text-align: center;
+    }
+
+    h1 code {
+      position: relative;
+      display: inline-block;
+      background-color: #07c5ff;
+      color: rgb(214, 212, 212);
+      padding: 3.5em 5em;
+      border-radius: 4px;
+      font-size: 1.9em;
+      box-shadow: inset 0 0 15px rgba(17, 17, 17, 0.5);
+      text-shadow: 2px 2px 5px rgba(5, 5, 5, 0.986);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.6s ease-in-out;
+    }
+
+    /* Texto inicial */
+    h1 code::before {
+      content: "box-shadow";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.6s ease-in-out;
+      opacity: 1;
+    }
+
+    /* Texto que aparece luego */
+    h1 code::after {
+      content: "shadow-box";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    /* Al pasar el mouse: cambia color, sombra y texto */
+    h1 code:hover {
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4),
+                  inset 0 0 30px rgba(255, 255, 255, 0.8);
+      background-color: #0099e0;
+    }
+
+    /* Oculta el texto original y muestra el nuevo */
+    h1 code:hover::before {
+      opacity: 0;
+    }
+
+    h1 code:hover::after {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1><code></code></h1>
+  </div>
+</body>
+</html>
