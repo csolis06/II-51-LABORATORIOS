@@ -561,16 +561,15 @@ loginForm.addEventListener('submit', async (e) => {
         password
     });
 
-    if (error) {
-        registroMensaje.textContent = 'Credenciales incorrectas';
-        registroMensaje.style.color = 'red';
-        return;
-    }
+ const loginAlert = document.getElementById('login-alert');
 
-    // LOGIN EXITOSO
-    registroMensaje.textContent = `Bienvenido ${data.user.email}`;
-    registroMensaje.style.color = 'green';
+if (error) {
+    loginAlert.textContent = '❌ Correo o contraseña incorrectos';
+    loginAlert.classList.remove('hidden');
+    return;
+}
 
+    loginAlert.classList.add('hidden');
     loginView.hidden = true;
     modulesBar.hidden = false;
 
