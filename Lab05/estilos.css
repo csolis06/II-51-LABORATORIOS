@@ -1,0 +1,82 @@
+/* Estilos generales */
+body {
+    background-color: #f4f6f9; /* gris claro profesional */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 60px; /* Para que el contenido no se oculte debajo del navbar fijo */
+}
+
+/* Estilos para el Navbar fijo */
+.navbar-dark.bg-dark {
+    background-color: #000000 !important;
+}
+
+/* Estilos para los contenedores */
+#ctn-1 {
+    background-color: #15c948; 
+}
+
+#ctn-2 {
+    background-color: #ced4da; 
+}
+
+/* Estilo para las columnas del Grid Básico */
+.custom-col {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    color: #212529;
+}
+
+/* Estilo para las columnas con distribución automática (col-sm) */
+.custom-col-sm {
+    background-color: #e2e3e5; 
+    border: 1px solid #6c7d6e;
+    padding: 10px;
+}
+.componente-grid {
+    background-color: #eef4ff;
+    color: #004085;
+    font-weight: bold;
+}
+
+
+/* Estilo para la sección "pintar" (Grid Responsivo) */
+.pintar > .row > div {
+    /* Azul suave */
+background-color: #eef4ff;
+
+/* Verde suave */
+background-color: #e6f4ea;
+
+/* Gris claro */
+background-color: #f1f3f5;
+
+}
+
+/* Media Queries para cambiar el color del párrafo principal (`.lead`) */
+/* Small devices (Landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .lead {
+        color: #976267; /* Rojo de Bootstrap */
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .lead {
+        color: #142c20; /* Azul de Bootstrap */
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .lead {
+        color: #28a745; /* Verde de Bootstrap */
+    }
+}
+
+/* Extra large devices (Large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .lead {
+        color: #6f42c1; /* Púrpura */
+    }
+}

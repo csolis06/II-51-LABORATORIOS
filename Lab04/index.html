@@ -1,310 +1,256 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAB-03 Plataforma Educativa</title>
-  
-  <style>
-    /* Estilos globales y del cuerpo */
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      /* Utilizo un color más legible para el fondo del cuerpo */
-      background-color: #f6f6f6;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Encabezado */
-    header {
-      background-color: #0964a1; /* Azul UC */
-      color: white;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Título */
-    h1 {
-      font-size: 1.8rem;
-      margin: 0;
-    }
-
-    /* Estilos del Menú Principal (contenedor nav) */
-    .menu {
-      /* El color del fondo principal se aplica aquí, pero es mejor aplicarlo al 'ul' */
-      background-color: #30622f; /* Fondo verde oscuro */
-      overflow: hidden;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-    }
-
-    /* ---------------------------------------------------------------------- */
-    /* *** SOLUCIÓN AL PROBLEMA DEL FONDO DEL MENÚ *** */
-    /* ---------------------------------------------------------------------- */
-    /* Eliminamos el estilo anterior de 'nav ul' que tenía background: #f0f0f0
-       y aplicamos el color verde directamente al 'ul' dentro de '.menu'
-       para que cubra correctamente el área.
-    */
-    .menu ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      /* Aplicamos el color deseado al UL para que se muestre */
-      background-color: #30622f; 
-    }
-
-    .menu li {
-      margin: 0; /* Quitamos el margin para que el padding del 'a' defina el espacio */
-    }
-
-    .menu a {
-      color: white; /* Cambié el color del texto a blanco para que contraste con el fondo verde */
-      text-decoration: none;
-      padding: 14px 20px;
-      display: block;
-      transition: background-color 0.3s;
-      font-weight: bold;
-    }
-
-    .menu a:hover {
-      background-color: #1a4f19; /* Un tono más oscuro de verde al pasar el mouse */
-    }
-
-    /* Contenido principal y formulario */
-    main {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 20px auto;
-      display: flex;
-      gap: 30px;
-      /* Estilo responsivo para que el formulario y el video se apilen en pantallas pequeñas */
-      flex-direction: column;
-    }
-
-    section {
-        flex: 1;
-        background-color: white;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    form fieldset {
-      border: 1px solid #ddd;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 6px;
-    }
-
-    form legend {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #0964a1;
-      padding: 0 10px;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #555;
-    }
-
-    .form-input {
-      width: 100%; /* Ocupa todo el ancho disponible */
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background-color: white;
-      color: #333;
-      box-sizing: border-box; /* Incluye padding y borde en el ancho total */
-      transition: border-color 0.3s;
-    }
-
-    .form-input:focus {
-      border-color: #0964a1;
-      outline: none;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Principal - Acceso UC</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23005DA4%22 font-family=%22Inter, sans-serif%22 font-weight=%22800%22>UC</text></svg>">
     
-    /* Estilos para Radio Buttons y Checkboxes */
-    fieldset div > div {
-        margin-bottom: 8px;
-    }
+    <!-- CSS EMBEBIDO (Usando la paleta UC Azul) -->
+    <style>
+        /* -------------------------------------------------------------------
+           VARIABLES Y ESTILOS BASE (UC Palette)
+           ------------------------------------------------------------------- */
+        :root {
+            --uc-blue: #005DA4; 
+            --uc-cyan: #00C0F3; 
+            --uc-cyan-light: #E0F7FF; 
+            --uc-bg-light: #f7f9fb; 
+            --uc-text-dark: #1f2937; 
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--uc-bg-light); 
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--uc-text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 0.75rem;
+            border-top: 8px solid var(--uc-blue);
+            overflow: hidden; 
+            width: 100%;
+        }
+        
+        /* -------------------------------------------------------------------
+           ENCABEZADO Y NAVEGACIÓN
+           ------------------------------------------------------------------- */
+        header {
+            background-color: var(--uc-blue);
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 4px solid var(--uc-cyan);
+        }
+        
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+        }
+        
+        .slogan {
+            font-size: 1rem;
+            color: var(--uc-cyan-light); 
+            font-style: italic;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        
+        nav {
+            background-color: #004b86; 
+            padding: 0.5rem 2.5rem;
+            border-bottom: 1px solid var(--uc-cyan);
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            display: block;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border-radius: 0.3rem;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--uc-cyan);
+            color: var(--uc-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        main {
+            padding: 2.5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+        }
+        
+        /* -------------------------------------------------------------------
+           LOGIN FORM
+           ------------------------------------------------------------------- */
+        .login-card {
+            max-width: 400px;
+            padding: 2.5rem;
+            background-color: #fcfdfe;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--uc-cyan);
+        }
 
-    /* Botón de envío */
-    button[type="submit"] {
-      background-color: #0964a1; 
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.1s;
-      margin-top: 15px;
-    }
+        .login-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--uc-blue);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .login-subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
-    button[type="submit"]:hover {
-      background-color: #074a7a;
-      transform: translateY(-1px);
-    }
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
 
-    /* Video incrustado */
-    iframe {
-      width: 100%;
-      height: 315px;
-      border-radius: 6px;
-    }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--uc-text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
 
-    /* Pie de página */
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.9rem;
-      margin-top: 20px;
-    }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
 
-    footer a {
-        color: #0964a1;
-        text-decoration: none;
-    }
+        .form-group input:focus {
+            border-color: var(--uc-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 192, 243, 0.3);
+            outline: none;
+        }
 
-    /* Adaptación a dispositivos móviles */
-    @media (min-width: 768px) {
-      main {
-        flex-direction: row; /* Vuelve a la disposición en fila en pantallas más grandes */
-      }
-    }
-  </style>
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--uc-blue);
+            color: white;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .btn-submit:hover {
+            background-color: #004b86;
+        }
+
+        /* -------------------------------------------------------------------
+           RESPONSIVIDAD
+           ------------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            header, nav, main {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            nav ul {
+                gap: 0.5rem;
+            }
+            nav ul li a {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+            .login-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1>Plataforma Educativa Universidad Central</h1>
-  </header>
-
-  <!-- menu -->
-  <nav class="menu">
-    <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="cursos">Cursos</a></li>
-      <li><a href="contacto">Contacto</a></li>
-      <li><a href="ayuda">Ayuda</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <section>
-      <form action="#" method="post">
-        <fieldset>
-          <legend>Registro de Usuario</legend>
-
-          <div class="form-group">
-            <label for="username">Nombre de Usuario:</label>
-            <input class="form-input" type="text" id="username" name="username" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="email">Correo Electrónico:</label>
-            <input class="form-input" type="email" id="email" name="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input class="form-input" type="password" id="password" name="password" required>
-          </div>
-
-          <fieldset>
-            <legend>Género</legend>
-            <div>
-              <div>
-                <input type="radio" value="m" name="genero" id="g-m">
-                <label for="g-m">Masculino</label>
-              </div>
-              <div>
-                <input type="radio" value="f" name="genero" id="g-f">
-                <label for="g-f">Femenino</label>
-              </div>
-              <div>
-                <input type="radio" value="o" name="genero" id="g-o">
-                <label for="g-o">Otro</label>
-              </div>
-              <div>
-                <input type="radio" value="n" name="genero" id="g-n">
-                <label for="g-n">Prefiero no decirlo</label>
-              </div>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-text">UC</div>
+                <div class="slogan">Portal de Acceso Académico</div>
             </div>
-          </fieldset>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="main_portal.html" class="active">Login</a></li>
+                <!-- Asegúrese de que estos archivos existan en su carpeta -->
+                <li><a href="estudiantes.html">Estudiantes</a></li> 
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="profesores.html">Profesores</a></li>
+            </ul>
+        </nav>
 
-          <fieldset>
-            <legend>Modalidad</legend>
-            <!-- Nota: Cambié el atributo 'name' para que sea diferente de 'genero' (debería ser 'modalidad') -->
-            <div>
-              <div>
-                <input type="radio" value="presencial" name="modalidad" id="mod-p">
-                <label for="mod-p">Presencial</label>
-              </div>
-              <div>
-                <input type="radio" value="remoto" name="modalidad" id="mod-r">
-                <label for="mod-r">Remoto</label>
-              </div>
+        <main>
+            <div class="login-card">
+                <h2 class="login-title">Inicio de Sesión</h2>
+                <p class="login-subtitle">Ingrese sus credenciales para acceder al sistema.</p>
+
+                <form onsubmit="event.preventDefault(); alert('Acceso Concedido: ¡Bienvenido al sistema!');">
+                    <div class="form-group">
+                        <label for="username">Usuario (Carné)</label>
+                        <input type="text" id="username" placeholder="Ej: B12345" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Ingresar</button>
+                    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #9ca3af;">
+                        Este es un prototipo de simulación de acceso.
+                    </p>
+                </form>
             </div>
-          </fieldset>
+        </main>
 
-          <fieldset>
-            <legend>Seleccione sus intereses:</legend>
-            <div>
-              <div>
-                <input type="checkbox" name="intereses" id="interes1" value="programacion">
-                <label for="interes1">Programación</label>
-              </div>
-              <div>
-                <input type="checkbox" name="intereses" id="interes2" value="diseño">
-                <label for="interes2">Diseño Gráfico</label>
-              </div>
-              <div>
-                <input type="checkbox" name="intereses" id="interes3" value="marketing">
-                <label for="interes3">Marketing Digital</label>
-              </div>
-              <div>
-                <input type="checkbox" name="intereses" id="interes4" value="ciencia">
-                <label for="interes4">Ciencia de Datos</label>
-              </div>
-            </div>
-          </fieldset>
-
-          <button type="submit">Registrar</button>
-        </fieldset>
-      </form>
-    </section>
-
-    <section>
-      <h2 class="title" style="color: #0964a1; margin-bottom: 20px;">Video Promocional</h2>
-      <div style="aspect-ratio: 16/9; width: 100%;">
-        <iframe src="https://www.youtube.com/embed/LXb3EKWsInQ?si=KRC7kR0cZzGenVSb&amp;start=61"
-          title="Video Incrustado" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2023 Plataforma Educativa Universidad Central</p>
-    <p>Contacto: <a href="mailto:Cristhian.Solis@uc.ac.cr">Cristhian Solís</a></p>
-  </footer>
-
+        <footer>
+            <p style="text-align: center; padding: 1rem; border-top: 1px solid #eee; font-size: 0.75rem; color: #9ca3af;">
+                &copy; 2025 Universidad Central. Módulo de Acceso.
+            </p>
+        </footer>
+    </div>
 </body>
-
 </html>
+
